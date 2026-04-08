@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextLens | Handwritten & Printed Text Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="glow"></div>
+    <header>
+        <div class="container">
+            <h1 class="logo">Text<span>Lens</span></h1>
+            <p class="tagline">AI-Powered Hand-to-Print Classification</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="upload-section card">
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-zone-content">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                    </svg>
+                    <h3>Upload or Capture Image</h3>
+                    <p>Drag & drop, <span class="browse">browse files</span> or <button id="camera-btn"
+                            class="btn btn-secondary">Use Camera</button></p>
+                </div>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+
+            <div id="camera-container" class="camera-container hidden">
+                <div class="video-wrapper">
+                    <video id="video" autoplay playsinline></video>
+                    <div class="camera-controls">
+                        <button id="snap-btn" class="btn btn-primary">Capture Frame</button>
+                        <button id="cancel-camera-btn" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="preview-container" class="preview-container hidden">
+                <div class="preview-header">
+                    <h4>Image Preview</h4>
+                    <button id="classify-btn" class="btn btn-primary">Classify Now</button>
+                </div>
+                <div class="image-wrapper">
+                    <img id="image-preview" src="#" alt="Preview">
+                </div>
+            </div>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <div class="card results-card">
+                <div class="results-header">
+                    <h3>Classification Results</h3>
+                    <button id="download-btn" class="btn btn-secondary">Download Processed Image</button>
+                </div>
+                <div class="results-layout">
+                    <div class="processed-image-wrapper">
+                        <img id="processed-image" src="#" alt="Processed Result">
+                    </div>
+                    <div class="stats-panel">
+                        <div class="stat-card" data-type="handwritten">
+                            <span class="dot green"></span>
+                            <span class="label">Handwritten</span>
+                            <span class="count" id="count-handwritten">0</span>
+                        </div>
+                        <div class="stat-card" data-type="printed">
+                            <span class="dot blue"></span>
+                            <span class="label">Printed</span>
+                            <span class="count" id="count-printed">0</span>
+                        </div>
+                        <div class="stat-card" data-type="mixed">
+                            <span class="dot red"></span>
+                            <span class="label">Mixed</span>
+                            <span class="count" id="count-mixed">0</span>
+                        </div>
+                        <div class="stat-card" data-type="other">
+                            <span class="dot yellow"></span>
+                            <span class="label">Other</span>
+                            <span class="count" id="count-other">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="loader" class="loader-overlay hidden">
+        <div class="spinner"></div>
+        <p>Analyzing text regions...</p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
